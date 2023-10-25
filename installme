@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [[ $(id -u ) -eq 0 ]]; then
+    echo "You're running this installation in a root terminal."
+    echo "So when you're going to run this tool make sure u are ROOT USER"
+    sleep 4
+    clear
+else
+    echo "You are not running as the root user."
+    echo "So when you're going to run this tool make sure u are NORMAL USER"
+    sleep 4
+    clear
+fi
+
+CURRENT_DIR=$(pwd)
+
+if [ -n "$BASH_VERSION" ]; then
+    name="Exported PATH in ~/.zshrc."
+    echo "export PATH=$CURRENT_DIR:$PATH" >> ~/.zshrc
+    echo "Exported PATH in ~/.zshrc."
+elif [ -n "$ZSH_VERSION" ]; then
+    name="Exported PATH in ~/.bashrc."
+    echo "export PATH=$CURRENT_DIR:$PATH" >> ~/.bashrc
+    echo "Exported PATH in ~/.bashrc."
+else
+    echo "Error: Unsupported shell."
+    exit 1
+fi
+
+source ~/.zshrc || source ~/.bashrc
+clear
+sleep 1
+echo "Installation complete."
+echo "$PATH has been updated with the current directory."
+sleep 6
+clear
+echo "you can now use our tool outside this directory."
+echo "$name"
+bash permission
+exit

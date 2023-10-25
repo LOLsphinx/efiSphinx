@@ -1,0 +1,11 @@
+#!/bin/bash
+USERNAME=$(whoami)
+currentdir=$(pwd)
+EFISPINX_DIR="$currentdir/efisphinx"
+INSTALLME_SCRIPT="$currentdir/installme"
+
+sudo chown -R $USERNAME:$USERNAME $EFISPINX_DIR $INSTALLME_SCRIPT
+
+sudo chmod +x $INSTALLME_SCRIPT
+
+echo "Ownership and permissions updated successfully."
